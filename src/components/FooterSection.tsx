@@ -1,4 +1,4 @@
-import zyraLogo from "@/assets/zyra-logo.png";
+import zyraLogo from "@/assets/zyra-logo.jpeg";
 
 const FooterSection = () => (
   <footer className="py-16 px-6 md:px-16 lg:px-24 border-t border-foreground/[0.07]">
