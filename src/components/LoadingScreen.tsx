@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import zyraLogo from "@/assets/zyra-logo.png";
+import zyraLogo from "@/assets/zyra-logo.jpeg";
 
 interface LoadingScreenProps {
   isLoading: boolean;
