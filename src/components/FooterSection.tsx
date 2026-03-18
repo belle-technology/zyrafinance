@@ -3,7 +3,6 @@ import zyraLogo from "@/assets/zyra-logo.jpeg";
 
 const FooterSection = () => (
   <footer className="relative py-20 px-6 md:px-16 lg:px-24">
-    {/* Top border glow */}
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
     <div className="max-w-7xl mx-auto">
@@ -20,10 +19,10 @@ const FooterSection = () => (
           className="w-12 h-12 object-contain rounded-xl opacity-70"
         />
         <p className="text-muted-foreground text-sm max-w-md">
-          Building the future of decentralized finance — from Africa to the world.
+          Africa's first non-custodial DEX — secure, transparent, and built for global traders.
         </p>
         <div className="flex items-center gap-6 mt-2">
-          {["About", "Roadmap", "Tokenomics", "Whitepaper"].map((item) => (
+          {["About", "Roadmap", "Team", "Tokenomics", "Whitepaper"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -35,7 +34,7 @@ const FooterSection = () => (
         </div>
         <div className="w-full h-[1px] bg-foreground/[0.05] mt-6" />
         <p className="text-xs text-muted-foreground/40 font-mono-brand">
-          © 2025 Zyra. All rights reserved.
+          © 2025 Zyra Finance. All rights reserved.
         </p>
       </motion.div>
     </div>

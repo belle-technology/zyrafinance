@@ -24,10 +24,7 @@ const HeroSection = () => {
       ref={containerRef}
       className="relative min-h-svh flex items-center px-6 md:px-16 lg:px-24 overflow-hidden"
     >
-      {/* Grid background */}
       <div className="absolute inset-0 grid-pattern opacity-40" />
-
-      {/* Gradient overlays */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px]"
         style={{
@@ -42,7 +39,6 @@ const HeroSection = () => {
       />
 
       <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-20">
-        {/* Text */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,19 +54,21 @@ const HeroSection = () => {
             PRESALE LAUNCHING JUNE 2026
           </motion.span>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter-custom text-balance text-foreground leading-[1.05] mb-6">
-            Decentralized Trading,{" "}
-            <span className="gradient-text">Reimagined.</span>
+            Trade Without{" "}
+            <span className="gradient-text">Borders.</span>
           </h1>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-lg leading-relaxed mb-10">
-            Africa's first non-custodial DEX — secure, transparent, and built for a global audience.
+          <p className="text-muted-foreground text-lg md:text-xl max-w-lg leading-relaxed mb-4">
+            Africa's first non-custodial DEX — eliminating high fees, slow settlements, and limited access to global crypto markets for underserved traders.
+          </p>
+          <p className="text-muted-foreground/60 text-sm max-w-lg leading-relaxed mb-10">
+            Cross-chain swaps · MEV protection · AI-powered routing · Built for 1.4B people
           </p>
 
-          {/* Stats row */}
           <div className="flex flex-wrap gap-8">
             {[
-              { value: "10", label: "Phases Planned" },
-              { value: "2025", label: "Founded" },
-              { value: "∞", label: "Potential" },
+              { value: "0%", label: "Custodial Risk" },
+              { value: "10+", label: "Chains Planned" },
+              { value: "< 1s", label: "Settlement Target" },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -103,33 +101,24 @@ const HeroSection = () => {
               y: { duration: 6, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" },
             }}
           >
-            {/* Rotating rings */}
             <motion.div
               className="absolute inset-[5%] rounded-full"
-              style={{
-                border: "1px solid hsl(152 100% 50% / 0.08)",
-              }}
+              style={{ border: "1px solid hsl(152 100% 50% / 0.08)" }}
               animate={{ rotate: 360 }}
               transition={{ duration: 30, ease: "linear", repeat: Infinity }}
             />
             <motion.div
               className="absolute inset-[15%] rounded-full"
-              style={{
-                border: "1px solid hsl(152 100% 50% / 0.12)",
-              }}
+              style={{ border: "1px solid hsl(152 100% 50% / 0.12)" }}
               animate={{ rotate: -360 }}
               transition={{ duration: 20, ease: "linear", repeat: Infinity }}
             />
             <motion.div
               className="absolute inset-[25%] rounded-full"
-              style={{
-                border: "1px dashed hsl(152 100% 50% / 0.06)",
-              }}
+              style={{ border: "1px dashed hsl(152 100% 50% / 0.06)" }}
               animate={{ rotate: 360 }}
               transition={{ duration: 40, ease: "linear", repeat: Infinity }}
             />
-
-            {/* Orbiting dots */}
             <motion.div
               className="absolute w-2 h-2 rounded-full bg-primary glow-green"
               style={{ top: "5%", left: "50%", marginLeft: "-4px" }}
@@ -142,29 +131,24 @@ const HeroSection = () => {
               animate={{ rotate: -360 }}
               transition={{ duration: 20, ease: "linear", repeat: Infinity }}
             />
-
-            {/* Outer glow */}
             <div
               className="absolute inset-0 rounded-full"
               style={{
                 background: "radial-gradient(circle, hsl(152 100% 50% / 0.12) 0%, hsl(152 100% 50% / 0.03) 40%, transparent 70%)",
               }}
             />
-            {/* Mid glow */}
             <div
               className="absolute inset-[20%] rounded-full blur-2xl"
               style={{
                 background: "radial-gradient(circle, hsl(152 100% 50% / 0.25) 0%, transparent 70%)",
               }}
             />
-            {/* Inner core */}
             <div
               className="absolute inset-[35%] rounded-full blur-xl"
               style={{
                 background: "radial-gradient(circle, hsl(152 100% 60% / 0.5) 0%, hsl(152 100% 50% / 0.2) 50%, transparent 80%)",
               }}
             />
-            {/* Bright center */}
             <div
               className="absolute inset-[44%] rounded-full blur-sm"
               style={{
@@ -175,7 +159,6 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
