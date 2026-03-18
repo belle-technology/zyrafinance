@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import zyraLogo from "@/assets/zyra-logo.jpeg";
 
-const navItems = ["About", "Roadmap", "Tokenomics", "Whitepaper"];
+const navItems = ["About", "Roadmap", "Team", "Tokenomics", "Whitepaper"];
 
 const Navbar = () => (
   <motion.nav

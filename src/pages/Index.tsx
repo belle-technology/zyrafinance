@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import RoadmapSection from "@/components/RoadmapSection";
+import TeamSection from "@/components/TeamSection";
 import TokenomicsSection from "@/components/TokenomicsSection";
 import WhitepaperSection from "@/components/WhitepaperSection";
 import FooterSection from "@/components/FooterSection";
@@ -24,6 +25,7 @@ const Index = () => {
         <HeroSection />
         <AboutSection />
         <RoadmapSection />
+        <TeamSection />
         <TokenomicsSection />
         <WhitepaperSection />
         <FooterSection />
