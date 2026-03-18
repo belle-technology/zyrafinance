@@ -33,7 +33,7 @@ const Navbar = () => (
       <div className="flex items-center gap-3">
         <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono-brand text-primary bg-primary/10 border border-primary/20">
           <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          Presale Live
+          Presale Coming
         </span>
       </div>
     </div>
