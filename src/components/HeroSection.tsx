@@ -1,12 +1,33 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+const useCountdown = (targetDate: Date) => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  useEffect(() => {
+    const tick = () => {
+      const diff = Math.max(0, targetDate.getTime() - Date.now());
+      setTimeLeft({
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [targetDate]);
+  return timeLeft;
+};
+
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const orbX = useTransform(mouseX, [-400, 400], [-20, 20]);
   const orbY = useTransform(mouseY, [-400, 400], [-20, 20]);
+  const presaleDate = useRef(new Date("2026-06-01T00:00:00Z"));
+  const { days, hours, minutes, seconds } = useCountdown(presaleDate.current);
 
   useEffect(() => {
     const handleMouse = (e: MouseEvent) => {
