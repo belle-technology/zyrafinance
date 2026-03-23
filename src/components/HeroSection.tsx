@@ -105,6 +105,35 @@ const HeroSection = () => {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.7 }}
+            className="mt-10"
+          >
+            <span className="text-xs text-muted-foreground font-mono-brand uppercase tracking-widest mb-3 block">
+              Presale Launches In
+            </span>
+            <div className="flex gap-4">
+              {[
+                { value: days, label: "Days" },
+                { value: hours, label: "Hrs" },
+                { value: minutes, label: "Min" },
+                { value: seconds, label: "Sec" },
+              ].map((unit) => (
+                <div
+                  key={unit.label}
+                  className="flex flex-col items-center card-surface px-4 py-3 min-w-[60px]"
+                >
+                  <span className="text-2xl md:text-3xl font-bold font-mono-brand text-primary">
+                    {String(unit.value).padStart(2, "0")}
+                  </span>
+                  <span className="text-[10px] text-muted-foreground mt-1">{unit.label}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Orb */}
