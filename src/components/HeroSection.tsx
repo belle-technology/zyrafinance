@@ -1,5 +1,24 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const useCountdown = (targetDate: Date) => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  useEffect(() => {
+    const tick = () => {
+      const diff = Math.max(0, targetDate.getTime() - Date.now());
+      setTimeLeft({
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [targetDate]);
+  return timeLeft;
+};
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -7,6 +26,8 @@ const HeroSection = () => {
   const mouseY = useMotionValue(0);
   const orbX = useTransform(mouseX, [-400, 400], [-20, 20]);
   const orbY = useTransform(mouseY, [-400, 400], [-20, 20]);
+  const presaleDate = useRef(new Date("2026-06-01T00:00:00Z"));
+  const { days, hours, minutes, seconds } = useCountdown(presaleDate.current);
 
   useEffect(() => {
     const handleMouse = (e: MouseEvent) => {
@@ -84,6 +105,35 @@ const HeroSection = () => {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.7 }}
+            className="mt-10"
+          >
+            <span className="text-xs text-muted-foreground font-mono-brand uppercase tracking-widest mb-3 block">
+              Presale Launches In
+            </span>
+            <div className="flex gap-4">
+              {[
+                { value: days, label: "Days" },
+                { value: hours, label: "Hrs" },
+                { value: minutes, label: "Min" },
+                { value: seconds, label: "Sec" },
+              ].map((unit) => (
+                <div
+                  key={unit.label}
+                  className="flex flex-col items-center card-surface px-4 py-3 min-w-[60px]"
+                >
+                  <span className="text-2xl md:text-3xl font-bold font-mono-brand text-primary">
+                    {String(unit.value).padStart(2, "0")}
+                  </span>
+                  <span className="text-[10px] text-muted-foreground mt-1">{unit.label}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Orb */}
