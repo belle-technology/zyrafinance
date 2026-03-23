@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
