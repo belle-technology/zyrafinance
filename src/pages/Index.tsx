@@ -9,6 +9,10 @@ import TokenomicsSection from "@/components/TokenomicsSection";
 import WhitepaperSection from "@/components/WhitepaperSection";
 import FooterSection from "@/components/FooterSection";
 
+const SectionDivider = () => (
+  <div className="section-divider" />
+);
+
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,11 +27,17 @@ const Index = () => {
       <main className="bg-background noise-bg relative">
         <Navbar />
         <HeroSection />
+        <SectionDivider />
         <AboutSection />
+        <SectionDivider />
         <RoadmapSection />
+        <SectionDivider />
         <TeamSection />
+        <SectionDivider />
         <TokenomicsSection />
+        <SectionDivider />
         <WhitepaperSection />
+        <SectionDivider />
         <FooterSection />
       </main>
     </>

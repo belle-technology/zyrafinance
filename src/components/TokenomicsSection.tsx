@@ -1,15 +1,23 @@
 import { motion } from "framer-motion";
 
+const allocations = [
+  { category: "Public Sale (ICO)", percentage: 40, amount: "68,000,000", color: "hsl(152 100% 50%)" },
+  { category: "Liquidity Mining", percentage: 30, amount: "51,000,000", color: "hsl(152 80% 40%)" },
+  { category: "Airdrops (User Growth)", percentage: 15, amount: "25,500,000", color: "hsl(170 100% 50%)" },
+  { category: "Staking Rewards", percentage: 10, amount: "17,000,000", color: "hsl(152 60% 35%)" },
+  { category: "Referral Rewards", percentage: 5, amount: "8,500,000", color: "hsl(140 70% 30%)" },
+];
+
 const TokenomicsSection = () => (
   <section id="tokenomics" className="relative py-32 md:py-48 px-6 md:px-16 lg:px-24">
     <motion.div
-      className="max-w-4xl mx-auto"
+      className="max-w-5xl mx-auto"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.7, ease: [0.2, 0, 0, 1] }}
     >
-      <div className="text-center mb-12">
+      <div className="text-center mb-16">
         <span className="inline-flex px-3 py-1 rounded-full text-xs font-mono-brand text-primary bg-primary/10 border border-primary/20 mb-6">
           TOKENOMICS
         </span>
@@ -17,12 +25,11 @@ const TokenomicsSection = () => (
           ZRA <span className="gradient-text">Token</span>
         </h2>
         <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-          Powering the Zyra ecosystem
+          Total Supply: <span className="text-foreground font-mono-brand font-semibold">170,000,000 ZRA</span>
         </p>
       </div>
 
-      <div className="card-surface glow-border relative overflow-hidden p-10 md:p-14">
-        {/* Decorative corner glow */}
+      <div className="card-surface glow-border relative overflow-hidden p-8 md:p-12">
         <div
           className="absolute -top-20 -right-20 w-60 h-60 pointer-events-none"
           style={{
@@ -30,39 +37,94 @@ const TokenomicsSection = () => (
           }}
         />
 
-        <div className="relative z-10 flex flex-col items-center text-center">
-          <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
-            <span className="text-2xl">📊</span>
-          </div>
-          <p className="text-muted-foreground text-lg mb-10">
-            Full tokenomics breakdown coming soon
-          </p>
+        <div className="relative z-10">
+          {/* Donut chart visual */}
+          <div className="flex flex-col md:flex-row items-center gap-10 mb-10">
+            <div className="relative w-48 h-48 flex-shrink-0">
+              <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+                {allocations.reduce<{ elements: JSX.Element[]; offset: number }>(
+                  (acc, item, i) => {
+                    const circumference = Math.PI * 70;
+                    const dash = (item.percentage / 100) * circumference;
+                    acc.elements.push(
+                      <motion.circle
+                        key={i}
+                        cx="50"
+                        cy="50"
+                        r="35"
+                        fill="none"
+                        stroke={item.color}
+                        strokeWidth="12"
+                        strokeDasharray={`${dash} ${circumference - dash}`}
+                        strokeDashoffset={-acc.offset}
+                        strokeLinecap="round"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 + i * 0.15, duration: 0.6 }}
+                      />
+                    );
+                    acc.offset += dash;
+                    return acc;
+                  },
+                  { elements: [], offset: 0 }
+                ).elements}
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center">
+                  <span className="text-2xl font-bold font-mono-brand text-foreground">170M</span>
+                  <span className="text-[10px] text-muted-foreground block">ZRA</span>
+                </div>
+              </div>
+            </div>
 
-          {/* Placeholder chart area */}
-          <div className="w-full h-48 rounded-2xl bg-foreground/[0.02] border border-foreground/[0.05] mb-10 flex items-center justify-center">
-            <div className="flex gap-3 items-end">
-              {[40, 65, 50, 80, 35, 70, 55].map((h, i) => (
+            <div className="flex-1 w-full space-y-3">
+              {allocations.map((item, i) => (
                 <motion.div
-                  key={i}
-                  className="w-4 md:w-6 rounded-t-md bg-primary/20"
-                  initial={{ height: 0 }}
-                  whileInView={{ height: h }}
+                  key={item.category}
+                  className="flex items-center justify-between gap-4"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.3 + i * 0.08, duration: 0.6, ease: [0.2, 0, 0, 1] }}
-                />
+                  transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div
+                      className="w-3 h-3 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: item.color }}
+                    />
+                    <span className="text-sm text-foreground/80 truncate">{item.category}</span>
+                  </div>
+                  <div className="flex items-center gap-4 flex-shrink-0">
+                    <span className="text-sm font-mono-brand text-primary font-semibold">{item.percentage}%</span>
+                    <span className="text-xs text-muted-foreground font-mono-brand hidden sm:inline">{item.amount}</span>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm text-muted-foreground bg-foreground/[0.03] border border-foreground/[0.06] hover:border-primary/20 hover:text-foreground transition-all duration-300 cursor-default">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-              View Tokenomics
-            </span>
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm text-muted-foreground bg-foreground/[0.03] border border-foreground/[0.06] hover:border-primary/20 hover:text-foreground transition-all duration-300 cursor-default">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-              Download PDF
-            </span>
+          {/* Progress bars */}
+          <div className="space-y-2">
+            {allocations.map((item, i) => (
+              <motion.div
+                key={item.category}
+                className="w-full h-1.5 rounded-full bg-foreground/[0.05] overflow-hidden"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 + i * 0.1 }}
+              >
+                <motion.div
+                  className="h-full rounded-full"
+                  style={{ backgroundColor: item.color }}
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${item.percentage}%` }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.8 + i * 0.1, duration: 0.8, ease: [0.2, 0, 0, 1] }}
+                />
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
