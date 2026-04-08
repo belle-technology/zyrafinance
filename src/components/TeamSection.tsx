@@ -9,91 +9,76 @@ const team = [
     name: "Fatima Yusuf Adam",
     alias: "Zahra",
     role: "Founder & CEO",
-    description: "Visionary leader driving Zyra's mission to democratize DeFi access across Africa.",
+    description: "Software engineer & original architect behind the Zyra protocol.",
     image: fatimaImg,
   },
   {
     name: "Usman Zayyana",
     role: "Co-Founder & COO",
-    description: "Operations strategist ensuring seamless execution from product to market launch.",
+    description: "Computer science background driving platform strategy & infrastructure.",
     image: usmanImg,
   },
   {
     name: "Sadiq Aminu Safana",
     role: "Co-Founder & CSPO",
-    description: "Strategy & partnerships officer building the ecosystem connections that fuel Zyra's growth.",
+    description: "5+ years in crypto — ecosystem development, strategy & community growth.",
     image: sadiqImg,
   },
   {
     name: "Abbas Zakariya",
     role: "Technical Co-Founder",
-    description: "Engineering architect building the core infrastructure and smart contract systems powering Zyra.",
+    description: "Engineering architect building core infrastructure & smart contracts.",
     image: abbasImg,
   },
 ];
 
 const TeamSection = () => (
-  <section id="team" className="relative py-32 md:py-48 px-6 md:px-16 lg:px-24">
-    <div
-      className="absolute top-1/2 right-0 w-[400px] h-[400px] pointer-events-none"
-      style={{
-        background: "radial-gradient(circle, hsl(152 100% 50% / 0.03) 0%, transparent 70%)",
-      }}
-    />
-
+  <section id="team" className="relative py-28 md:py-40 px-6 md:px-16 lg:px-24">
     <motion.div
-      className="relative max-w-6xl mx-auto"
-      initial={{ opacity: 0, y: 30 }}
+      className="relative max-w-5xl mx-auto"
+      initial={{ opacity: 0, y: 25 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, ease: [0.2, 0, 0, 1] }}
+      transition={{ duration: 0.6, ease: [0.2, 0, 0, 1] }}
     >
-      <div className="text-center mb-20">
-        <span className="inline-flex px-3 py-1 rounded-full text-xs font-mono-brand text-primary bg-primary/10 border border-primary/20 mb-6">
-          THE TEAM
+      <div className="text-center mb-16">
+        <span className="inline-flex px-3 py-1 rounded-full text-xs font-mono-brand text-primary bg-primary/[0.08] border border-primary/15 mb-6">
+          TEAM
         </span>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter-custom text-foreground mb-4">
           Built by <span className="gradient-text">Builders</span>
         </h2>
-        <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-          A lean, ambitious founding team from Nigeria on a mission to bring world-class DeFi to Africa
+        <p className="text-muted-foreground text-base max-w-lg mx-auto">
+          A lean founding team from Nigeria on a mission to bring world-class DeFi to Africa
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {team.map((member, i) => (
           <motion.div
             key={member.name}
-            className="card-surface glow-border p-6 text-center relative overflow-hidden group"
-            initial={{ opacity: 0, y: 30 }}
+            className="group text-center"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.12, ease: [0.2, 0, 0, 1] }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
           >
-            {/* Photo */}
-            <div className="w-24 h-24 rounded-2xl mx-auto mb-5 overflow-hidden border-2 border-primary/20 relative">
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl mx-auto mb-4 overflow-hidden border border-foreground/[0.08] group-hover:border-primary/20 transition-all duration-300 relative">
               <img
                 src={member.image}
                 alt={member.name}
                 className="w-full h-full object-cover object-top"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <h3 className="text-base font-semibold text-foreground mb-1">{member.name}</h3>
+            <h3 className="text-sm font-semibold text-foreground mb-0.5">{member.name}</h3>
             {member.alias && (
-              <span className="text-xs text-primary/60 font-mono-brand mb-2 block">"{member.alias}"</span>
+              <span className="text-[10px] text-primary/50 font-mono-brand block mb-1">"{member.alias}"</span>
             )}
-            <span className="text-[11px] text-primary font-mono-brand uppercase tracking-wider block mb-3">
+            <span className="text-[10px] text-primary/70 font-mono-brand uppercase tracking-wider block mb-2">
               {member.role}
             </span>
-            <p className="text-xs text-muted-foreground leading-relaxed">{member.description}</p>
-
-            <div
-              className="absolute -bottom-16 -right-16 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{
-                background: "radial-gradient(circle, hsl(152 100% 50% / 0.06) 0%, transparent 70%)",
-              }}
-            />
+            <p className="text-[11px] text-muted-foreground/50 leading-relaxed">{member.description}</p>
           </motion.div>
         ))}
       </div>
