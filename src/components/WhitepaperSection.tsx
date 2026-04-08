@@ -1,5 +1,17 @@
 import { motion } from "framer-motion";
 
+const chapters = [
+  "Introduction",
+  "Problems",
+  "Zyra Solutions",
+  "Zyra Platform",
+  "Tokenomics (ZRA)",
+  "Governance",
+  "Roadmap",
+  "Security",
+  "Team",
+];
+
 const WhitepaperSection = () => (
   <section id="whitepaper" className="relative py-32 md:py-48 px-6 md:px-16 lg:px-24">
     <motion.div
@@ -17,7 +29,7 @@ const WhitepaperSection = () => (
           <span className="gradient-text">Whitepaper</span>
         </h2>
         <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-          Deep dive into Zyra's architecture and vision
+          Deep dive into Zyra's architecture, tokenomics, and vision — Version 1.0
         </p>
       </div>
 
@@ -29,33 +41,56 @@ const WhitepaperSection = () => (
           }}
         />
 
-        <div className="relative z-10 flex flex-col items-center text-center">
-          <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
-            <span className="text-2xl">📄</span>
-          </div>
-          <p className="text-muted-foreground text-lg mb-10">
-            Full whitepaper releasing soon
-          </p>
-
-          {/* Document preview placeholder */}
-          <div className="w-full max-w-sm aspect-[3/4] rounded-2xl bg-foreground/[0.02] border border-foreground/[0.05] mb-10 flex flex-col items-center justify-center gap-3 p-8">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-              <svg className="w-6 h-6 text-primary/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+        <div className="relative z-10 flex flex-col md:flex-row gap-10">
+          {/* Document preview */}
+          <div className="flex-shrink-0 mx-auto md:mx-0">
+            <div className="w-48 aspect-[3/4] rounded-2xl bg-foreground/[0.03] border border-foreground/[0.08] flex flex-col p-5 gap-2 relative overflow-hidden">
+              <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center mb-2">
+                <svg className="w-4 h-4 text-primary/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <span className="text-[10px] font-mono-brand text-primary/50 font-semibold">ZYRA</span>
+              <span className="text-[8px] font-mono-brand text-muted-foreground/40">WHITEPAPER v1.0</span>
+              <div className="mt-auto space-y-1">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="h-[2px] rounded-full bg-foreground/[0.04]" style={{ width: `${80 - i * 8}%` }} />
+                ))}
+              </div>
+              <div className="absolute top-0 right-0 w-8 h-8">
+                <div className="absolute top-0 right-0 w-0 h-0 border-l-[16px] border-l-transparent border-t-[16px] border-t-foreground/[0.06]" />
+              </div>
             </div>
-            <span className="text-xs text-muted-foreground/50 font-mono-brand">ZYRA_WHITEPAPER.PDF</span>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm text-muted-foreground bg-foreground/[0.03] border border-foreground/[0.06] hover:border-primary/20 hover:text-foreground transition-all duration-300 cursor-default">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-              View Whitepaper
-            </span>
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm text-muted-foreground bg-foreground/[0.03] border border-foreground/[0.06] hover:border-primary/20 hover:text-foreground transition-all duration-300 cursor-default">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-              Download PDF
-            </span>
+          {/* Content */}
+          <div className="flex-1 flex flex-col">
+            <h3 className="text-lg font-semibold text-foreground mb-1">Zyra Whitepaper v1.0</h3>
+            <p className="text-sm text-muted-foreground mb-5">
+              Decentralized Exchange Infrastructure for Africa — a comprehensive guide to Zyra's protocol, tokenomics, governance, and roadmap.
+            </p>
+
+            <div className="mb-6">
+              <span className="text-[10px] font-mono-brand text-muted-foreground/50 uppercase tracking-widest mb-3 block">Contents</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                {chapters.map((ch, i) => (
+                  <span key={ch} className="text-xs text-muted-foreground/60 font-mono-brand">
+                    {i + 1}. {ch}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3 mt-auto">
+              <a
+                href="/ZYRA_WHITEPAPER.docx"
+                download
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm text-primary-foreground bg-primary hover:bg-primary/90 transition-all duration-300 font-medium"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                Download Whitepaper
+              </a>
+            </div>
           </div>
         </div>
       </div>

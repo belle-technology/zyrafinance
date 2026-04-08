@@ -1,4 +1,8 @@
 import { motion } from "framer-motion";
+import fatimaImg from "@/assets/team-fatima.png";
+import usmanImg from "@/assets/team-usman.jpeg";
+import sadiqImg from "@/assets/team-sadiq.jpeg";
+import abbasImg from "@/assets/team-abbas.jpeg";
 
 const team = [
   {
@@ -6,19 +10,25 @@ const team = [
     alias: "Zahra",
     role: "Founder & CEO",
     description: "Visionary leader driving Zyra's mission to democratize DeFi access across Africa.",
-    initial: "FA",
+    image: fatimaImg,
   },
   {
     name: "Usman Zayyana",
     role: "Co-Founder & COO",
     description: "Operations strategist ensuring seamless execution from product to market launch.",
-    initial: "UZ",
+    image: usmanImg,
   },
   {
     name: "Sadiq Aminu Safana",
     role: "Co-Founder & CSPO",
     description: "Strategy & partnerships officer building the ecosystem connections that fuel Zyra's growth.",
-    initial: "SA",
+    image: sadiqImg,
+  },
+  {
+    name: "Abbas Zakariya",
+    role: "Technical Co-Founder",
+    description: "Engineering architect building the core infrastructure and smart contract systems powering Zyra.",
+    image: abbasImg,
   },
 ];
 
@@ -32,7 +42,7 @@ const TeamSection = () => (
     />
 
     <motion.div
-      className="relative max-w-5xl mx-auto"
+      className="relative max-w-6xl mx-auto"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -50,28 +60,33 @@ const TeamSection = () => (
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {team.map((member, i) => (
           <motion.div
             key={member.name}
-            className="card-surface glow-border p-8 text-center relative overflow-hidden group"
+            className="card-surface glow-border p-6 text-center relative overflow-hidden group"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.2, 0, 0, 1] }}
+            transition={{ duration: 0.6, delay: i * 0.12, ease: [0.2, 0, 0, 1] }}
           >
-            {/* Avatar placeholder */}
-            <div className="w-20 h-20 rounded-2xl mx-auto mb-6 flex items-center justify-center bg-primary/10 border border-primary/20">
-              <span className="text-2xl font-bold text-primary font-mono-brand">{member.initial}</span>
+            {/* Photo */}
+            <div className="w-24 h-24 rounded-2xl mx-auto mb-5 overflow-hidden border-2 border-primary/20 relative">
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
             </div>
-            <h3 className="text-lg font-semibold text-foreground mb-1">{member.name}</h3>
+            <h3 className="text-base font-semibold text-foreground mb-1">{member.name}</h3>
             {member.alias && (
               <span className="text-xs text-primary/60 font-mono-brand mb-2 block">"{member.alias}"</span>
             )}
-            <span className="text-xs text-primary font-mono-brand uppercase tracking-wider block mb-4">
+            <span className="text-[11px] text-primary font-mono-brand uppercase tracking-wider block mb-3">
               {member.role}
             </span>
-            <p className="text-sm text-muted-foreground leading-relaxed">{member.description}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{member.description}</p>
 
             <div
               className="absolute -bottom-16 -right-16 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
