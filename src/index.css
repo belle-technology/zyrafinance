@@ -146,4 +146,19 @@
     padding: 1px;
     pointer-events: none;
   }
+
+  .section-divider {
+    position: relative;
+    height: 1px;
+    max-width: 80%;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, hsl(152 100% 50% / 0.15), transparent);
+  }
+
+  @keyframes float-particle {
+    0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    50% { transform: translateY(-80px) translateX(20px); }
+  }
 }
